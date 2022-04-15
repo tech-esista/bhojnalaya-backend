@@ -1,4 +1,4 @@
-class BookingInformationController < ApplicationController
+class BookingInformationsController < ApplicationController
   
   def retrieve_booking_information
     bookings = BookingInformation.all
@@ -35,8 +35,7 @@ class BookingInformationController < ApplicationController
     return unless has_sufficient_params(%w[id status_id])
 
     booking_information = BookingInformation.where(id: params[:id])
-
-    booking_information.update(status_id: params['status_id'])
+    booking_information.update(status_id: params[:status_id])
 
     render_result_json 'Updated status for this booking information'
   end

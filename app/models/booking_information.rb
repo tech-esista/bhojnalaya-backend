@@ -1,9 +1,9 @@
 class BookingInformation < ApplicationRecord
-  after_save :set_booking_id
+  after_create :set_booking_id
 
   private
 
   def set_booking_id
-    update(booking_id: "BJNLY#{id}")
+    self.update(booking_id: "BJNLY#{self.id}")
   end
 end
