@@ -1,4 +1,4 @@
-class DailyAccountsController < ApplicationController
+\class DailyAccountsController < ApplicationController
 
 	def get_daily_accounts
         render_result_json DailyAccount.all
