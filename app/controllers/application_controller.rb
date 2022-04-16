@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     render json: obj
   end
 
-  def render_result_message(message)
+  def render_success_message(message)
     obj = {
       status: 'success',
       message: message

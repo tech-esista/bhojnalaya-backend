@@ -1,4 +1,4 @@
-\class DailyAccountsController < ApplicationController
+class DailyAccountsController < ApplicationController
 
 	def get_daily_accounts
         render_result_json DailyAccount.all
@@ -16,7 +16,7 @@
 
         daily_account.update(capacity: params[:capacity])
 
-        render_result_message 'Updated successfully!'
+        render_success_message 'Updated successfully!'
     end
 
 end

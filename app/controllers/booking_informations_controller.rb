@@ -25,7 +25,7 @@ class BookingInformationsController < ApplicationController
         )
 
         if new_booking_information.save
-            render_result_message 'Saved New information'
+            render_success_message 'Saved New information'
         else
             render_error_message new_booking_information.errors.full_messages
         end

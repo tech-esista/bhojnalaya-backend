@@ -8,19 +8,19 @@ class UserController < ApplicationController
             if params[:email].present?
                 existing_user = User.where('email ilike ? and id != ?', params[:email].strip,params[:id]).first
                 if existing_user
-                    render_error_json "This email is already registered with us."
+                    render_error_message "This email is already registered with us."
                     return
                 end
             end
             unless user
-                render_error_json 'User not present.'
+                render_error_message 'User not present.'
                 return
             end
         else
             if params[:email].present?
                 user = User.where('email ilike ?', params[:email].strip).first
                 if user
-                    render_error_json "This email is already registered with us."
+                    render_error_message "This email is already registered with us."
                     return
                 end
             end
@@ -39,9 +39,9 @@ class UserController < ApplicationController
         end
 
         if user.save
-            render_success_json 'User saved successfully.'
+            render_success_message 'User saved successfully.'
         else
-            render_error_json user.errors.full_messages.first
+            render_error_message user.errors.full_messages.first
         end
     end
 
@@ -52,7 +52,7 @@ class UserController < ApplicationController
             user = User.where(id: params[:id]).first
             render_result_json user
         else
-            render_error_json 'User not present.'
+            render_error_message 'User not present.'
         end
     end
 
@@ -63,17 +63,17 @@ class UserController < ApplicationController
         user = User.where('email ilike ?', params[:email]).first
 
         unless user
-            render_error_json 'Invalid Access. Please check your Email and Password.'
+            render_error_message 'Invalid Access. Please check your Email and Password.'
             return
         end
 
         unless user.valid_password?(params[:password])
-            render_error_json 'Invalid Access. Please check your Email and Password.'
+            render_error_message 'Invalid Access. Please check your Email and Password.'
             return
         end
 
         unless user.status_id == 1
-            render_error_json 'Your Account is not Active yet.'
+            render_error_message 'Your Account is not Active yet.'
             return
         end
 
