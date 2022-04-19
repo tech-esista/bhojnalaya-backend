@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def has_sufficient_params(api_params)
     api_params.each do |key|
       unless params[key].present?
-        render_error_message '${key} not present!'
+        render_error_message "#{key.humanize} not present!"
         return false
       end
     end

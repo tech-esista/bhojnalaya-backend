@@ -14,14 +14,15 @@ class BookingInformationsController < ApplicationController
         return unless has_sufficient_params(%w[first_name last_name mobile_no booking_for booking_for_date])
 
         new_booking_information = BookingInformation.new(
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        mobile_no: params[:mobile_no],
-        booking_for: params[:booking_for],
-        booked_on: DateTime.now,
-        booking_for_date: params[:booking_for_date],
-        # TODO: set constant for status_id
-        status_id: 1
+          first_name: params[:first_name],
+          last_name: params[:last_name],
+          mobile_number: params[:mobile_no],
+          booking_for: params[:booking_for],
+          booked_on: DateTime.now,
+          pick_up_time: Time.at(params[:pick_up_time].to_i / 1000).localtime,
+          booking_for_date: params[:booking_for_date],
+          # TODO: set constant for status_id
+          status_id: 0
         )
 
         if new_booking_information.save

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_16_114419) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_19_133419) do
   create_table "booking_informations", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_16_114419) do
     t.integer "status_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "pick_up_time"
   end
 
   create_table "daily_accounts", force: :cascade do |t|
